@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <menuitem name="Library"
+              id="library_menu"
+              web_icon="static/description/icon.png"/>
     
+    <menuitem name="Books"
+              id="book_menu"
+              parent="library_menu"/>
 </odoo>
