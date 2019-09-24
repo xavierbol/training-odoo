@@ -9,6 +9,7 @@
                 <field name="edition_date"/>
                 <field name="isbn"/>
                 <field name="publisher_id"/>
+                <field name="author_ids"/>
             </tree>
         </field>
     </record>
@@ -33,5 +34,23 @@
                 </sheet>
             </form>
         </field>
+    </record>
+    
+    <record model="ir.ui.view" id="rental_search_view">
+        <field name="name">book.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="isbn" />
+                <field name="author_ids" />
+            </search>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="book_list_action">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+<!--         <field name="view_mode">tree,form</field> -->
     </record>
 </odoo>

@@ -6,5 +6,16 @@
     
     <menuitem name="Books"
               id="book_menu"
-              parent="library_menu"/>
+              parent="library_menu"
+              action="book_list_action"/>
+    
+    <menuitem name="Rentals"
+              id="rental_menu"
+              parent="library_menu"
+              action="rental_list_action"/>
+    
+    <menuitem name="Partner"
+              id="partner_menu"
+              parent="book_menu"
+              action="partner_list_action"/>
 </odoo>
