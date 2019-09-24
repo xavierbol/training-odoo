@@ -11,7 +11,7 @@ class Course(models.Model):
     responsible_id = fields.Many2one(
         'openacademy.partner', ondelete='set null', string="Responsible", index=True)
     
-    level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
+    level = fields.Selection(selection=[('1', 'Easy'), ('2', 'Medium'), ('3', 'Hard')], string="Difficulty Level")
 
 
 class Session(models.Model):
