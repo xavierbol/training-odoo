@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import fields, models, api, exceptions
 
 
 class Course(models.Model):
@@ -22,6 +22,8 @@ class Session(models.Model):
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
     state = fields.Selection([('draft', "Draft"), ('confirmed', "Confirmed"), ('done', "Done")], default='draft')
+    
+    seats = fields.Integer(string="Number of seats")
 
     start_date = fields.Date(default=fields.Date.context_today)
     duration = fields.Float(digits=(6, 2), help="Duration in days", default=1)
@@ -29,3 +31,57 @@ class Session(models.Model):
     instructor_id = fields.Many2one('openacademy.partner', string="Instructor")
     course_id = fields.Many2one('openacademy.course', ondelete='cascade', string="Course", required=True)
     attendee_ids = fields.Many2many('openacademy.partner', string="Attendees")
+
+    @api.onchange('seats', 'attendee_ids')
+    def _verify_valid_seats(self):
+        if self.seats < 0:
+            return {
+                'warning': {
+                    'title': "Incorrect 'seats' value",
+                    'message': "The number of available seats may not be negative",
+                },
+            }
+        
+        if self.seats < len(self.attendee_ids):
+            return {
+                'warning': {
+                    'title': "Too many attendees",
+                    'message': "Increase seats or remove excess attendees",
+                }
+            }
+    
+    # Other solution
+    """using computed fields"""
+    taken_seats = fields.Float(compute="_compute_taken_seats", store=True)
+    
+    @api.depends('seats', 'attendee_ids')
+    def _compute_taken_seats(self):
+        for session in self:
+            if not session.seats:
+                session.taken_seats = 0.0
+            else:
+                session.taken_seats = 100.0 * len(session.attendee_ids) / session.seats
+                
+    """using onchange"""
+    @api.onchange('seats', 'attendee_ids')
+    def _change_taken_seats(self):
+        if self.taken_seats > 100:
+            return {
+                'warning': {
+                    'title': 'Too many attendees',
+                    'message': 'The room has %s available seats and there is %s attendees registered' % (self.seats, len(self.attendee_ids))
+                }
+            }
+    
+    """using python contrains"""
+    @api.constrains('seats', 'attendee_ids')
+    def _check_taken_seats(self):
+        for session in self:
+            if session.taken_seats > 100:
+                raise exceptions.ValidationError('The room has %s available seats and there is %s attendees registered' % (session.seats, len(session.attendee_ids)))
+                
+    """using SQL constrains"""
+    _sql_constraints = [
+        # possible only if taken_seats is stored
+        ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
+    ]
