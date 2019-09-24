@@ -19,8 +19,16 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="description" />
+                        <field name="responsible_id" />
                     </group>
+                    <notebook>
+                        <page string="Description" name="desc">
+                            <field name="description"/>
+                        </page>
+                        <page string="Sessions" name="sessions">
+                            <field name="session_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -40,7 +48,6 @@
     <record model="ir.actions.act_window" id="course_list_action">
         <field name="name">Courses</field>
         <field name="res_model">openacademy.course</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>
