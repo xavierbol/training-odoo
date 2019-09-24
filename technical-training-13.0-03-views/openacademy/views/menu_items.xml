@@ -2,7 +2,7 @@
 <odoo>
     <menuitem name="OpenAcademy"
               id="openacademy_menu"
-              web_icon="static/description/icon.png"/>
+              web_icon="openacademy,static/description/icon.png"/>
     
     <menuitem name="Courses"
               id="course_menu"
