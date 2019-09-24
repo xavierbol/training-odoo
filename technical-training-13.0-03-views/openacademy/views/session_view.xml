@@ -13,6 +13,7 @@
                 <field name="instructor_id"/>
                 <field name="course_id"/>
                 <field name="seats"/>
+                <field name="taken_seats" widget="progressbar"/>
             </tree>
         </field>
     </record>
@@ -24,10 +25,17 @@
             <form string="Session form">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="start_date"/>
-                        <field name="duration"/>
-                        <field name="seats"/>
+                        <group string="General">
+                            <field name="course_id"/>
+                            <field name="name"/>
+                            <field name="instructor_id"/>
+                        </group>
+                        <group string="Schedule">
+                            <field name="start_date"/>
+                            <field name="duration"/>
+                            <field name="seats"/>
+                            <field name="taken_seats" widget="progressbar"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -51,7 +59,7 @@
     <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Sessions</field>
         <field name="res_model">openacademy.session</field>
-        <field name="view_type">form</field>
+<!--         <field name="view_type">form</field> -->
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>
