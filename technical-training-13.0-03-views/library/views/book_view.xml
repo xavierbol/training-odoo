@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="book_tree_view">
+        <field name="name">book.tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree string="Books tree">
+                <field name="name"/>
+                <field name="edition_date"/>
+                <field name="isbn"/>
+                <field name="publisher_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="book_form_view">
+        <field name="name">book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="isbn"/>
+                        <field name="edition_date"/>
+                        <field name="publisher_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Rentals">
+                            <field name="rental_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
