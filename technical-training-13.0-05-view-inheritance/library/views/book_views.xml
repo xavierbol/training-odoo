@@ -1,5 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!--   Book views   -->
+    <record id="book_view_list" model="ir.ui.view">
+        <field name="name">book.tree</field>
+        <field name="model">library.copy</field>
+        <field name="arch" type="xml">
+            <tree string="Books">
+                <field name="name"/>
+                <field name="edition_date"/>
+                <field name="isbn"/>
+                <field name="publisher_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="book_view_form" model="ir.ui.view">
+        <field name="name">book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book">
+                <sheet>
+                    <group string="General">
+                        <field name="name"/>
+                        <field name="isbn"/>
+                        <field name="author_ids"/>
+                    </group>
+                    <group string="Publisher">
+                        <field name="publisher_id"/>
+                        <field name="edition_date"/>
+                    </group>
+                    <notebook>
+                        <page string="Copies" name="copies">
+                            <field name="copy_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="book_view_search" model="ir.ui.view">
+        <field name="name">book.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author_ids"/>
+                <field name="publisher_id"/>
+                <field name="isbn"/>
+                <field name="edition_date"/>
+            </search>
+        </field>
+    </record>
+    
+    
+    <!--   Book Copy views   -->
+    <record id="copy_view_list" model="ir.ui.view">
+        <field name="name">book.form</field>
+        <field name="model">library.copy</field>
+        <field name="inherit_id" ref="library.book_view_list"/>
+        <field name="arch" type="xml">
+            <field name="name" position="replace">
+                <field name="book_id"/>
+            </field>
+            <field name="publisher_id" position="after">
+                <field name="reference"/>
+            </field>
+        </field>
+    </record>
+    
+    <record id="copy_view_form" model="ir.ui.view">
+        <field name="name">copy.form</field>
+        <field name="model">library.copy</field>
+        <field name="inherit_id" ref="library.book_view_form"/>
+        <field name="arch" type="xml">
+            <page name="copies" position="replace">
+                <page string="Rentals" name="rentals">
+                    <field name="rental_ids"/>
+                </page>
+            </page>
+        </field>
+    </record>
+    
+    <record id="copy_view_search" model="ir.ui.view">
+        <field name="name">copy.search</field>
+        <field name="model">library.copy</field>
+        <field name="inherit_id" ref="library.book_view_search"/>
+        <field name="arch" type="xml">
+            <field name="name" position="replace">
+                <field name="book_id"/>
+            </field>
+            <field name="edition_date" position="after">
+                <field name="reference"/>
+            </field>
+        </field>
+    </record>
+    
+    
+    <!--   Actions   -->
     <record id="book_action" model="ir.actions.act_window">
         <field name="name">Books</field>
         <field name="res_model">library.book</field>
