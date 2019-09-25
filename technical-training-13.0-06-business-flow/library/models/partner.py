@@ -9,3 +9,5 @@ class Partner(models.Model):
     is_publisher = fields.Boolean(string="Is a Publisher", default=False)
 
     rental_ids = fields.One2many('library.rental', 'customer_id', string='Rentals')
+    
+    book_ids = fields.Many2many('product.product', string="Books", domain=[('is_book', '=', True)])

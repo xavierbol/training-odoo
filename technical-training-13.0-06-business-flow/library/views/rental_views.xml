@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="rental_view_form" model="ir.ui.view">
+        <field name="name">rental.form</field>
+        <field name="model">library.rental</field>
+        <field name="arch" type="xml">
+            <form string="Rental Form">
+                <header>
+                    <field name="state"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="customer_id"/>
+                            <field name="copy_id"/>
+                            <field name="book_id"/>
+                        </group>
+                        <group string="Rental">
+                            <field name="rental_date"/>
+                            <field name="return_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="Customer detail">
+                            <field name="customer_address"/>
+                            <field name="customer_email"/>
+                        </group>
+                        <group string="Book detail">
+                            <field name="book_authors"/>
+                            <field name="book_edition_date"/>
+                            <field name="book_publisher"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+                            
     <record id="rental_action" model="ir.actions.act_window">
         <field name="name">Rentals</field>
         <field name="res_model">library.rental</field>

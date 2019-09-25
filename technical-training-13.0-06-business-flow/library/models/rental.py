@@ -8,7 +8,7 @@ class Rentals(models.Model):
 
     customer_id = fields.Many2one('res.partner', string='Customer')
     copy_id = fields.Many2one('library.copy', string="Book Copy")
-    book_id = fields.Many2one('library.book', string='Book', related='copy_id.book_id', readonly=True)
+    book_id = fields.Many2one('product.product', string='Book', related='copy_id.book_id', readonly=True)
 
     rental_date = fields.Date(default=fields.Date.context_today)
     return_date = fields.Date()
@@ -19,6 +19,8 @@ class Rentals(models.Model):
     book_authors = fields.Many2many(related='copy_id.author_ids')
     book_edition_date = fields.Date(related='copy_id.edition_date')
     book_publisher = fields.Many2one(related='copy_id.publisher_id')
+    
+    state = fields.Selection([("draft", "Draft"), ("rented", "Rented"), ("returned", "Returned"), ("lost", "Lost")])
 
     @api.depends('customer_id')
     def _compute_customer_address(self):

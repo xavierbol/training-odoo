@@ -2,7 +2,7 @@
 <odoo>
     <record id="book_view_form" model="ir.ui.view">
         <field name="name">library.book.form</field>
-        <field name="model">library.book</field>
+        <field name="model">product.product</field>
         <field name="arch" type="xml">
             <form string="Book">
                 <sheet>
@@ -25,7 +25,7 @@
 
     <record id="book_view_search" model="ir.ui.view">
         <field name="name">library.book.search</field>
-        <field name="model">library.book</field>
+        <field name="model">product.product</field>
         <field name="arch" type="xml">
             <search string="Books">
                 <field name="name"/>
@@ -69,7 +69,7 @@
 
     <record id="book_action" model="ir.actions.act_window">
         <field name="name">Books</field>
-        <field name="res_model">library.book</field>
+        <field name="res_model">product.product</field>
         <field name="view_mode">tree,form</field>
     </record>
 
