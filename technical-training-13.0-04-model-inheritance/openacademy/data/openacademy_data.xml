@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="teacher1" model="res.partner.category">
+<!--     <record id="teacher1" model="res.partner.category">
         <field name="name">Chain Level 1</field>
     </record>
 
@@ -87,5 +87,5 @@
         <field name="seats">7</field>
         <field name="instructor_id" ref="user_ned"/>
         <field name="course_id" ref="course_dragon_functionnal"/>
-    </record>
+    </record> -->
 </odoo>
