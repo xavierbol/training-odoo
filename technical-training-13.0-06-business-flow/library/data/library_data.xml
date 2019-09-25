@@ -33,6 +33,7 @@
         <field name="name">Bantam Spectra</field>
         <field name="is_company" eval="True"/>
         <field name="is_publisher" eval="True"/>
+        <field name="customer" eval="False"/>
     </record>
 
     <record id="book_got" model="product.product">
