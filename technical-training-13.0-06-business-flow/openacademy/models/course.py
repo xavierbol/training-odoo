@@ -23,6 +23,7 @@ class Course(models.Model):
 
 class Session(models.Model):
     _name = 'openacademy.session'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Session'
 
     name = fields.Char(required=True)
@@ -67,3 +68,10 @@ class Session(models.Model):
             }}
         delta = fields.Date.from_string(self.end_date) - fields.Date.from_string(self.start_date)
         self.duration = delta.days + 1
+        
+    @api.onchange('taken_seats')
+    def _set_state(self):
+        if self.taken_seats >= 50:
+            self.state = 'confirmed'
+#         else:
+#             self.state = 'draft'
