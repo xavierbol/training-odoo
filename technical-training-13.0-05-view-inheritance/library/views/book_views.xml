@@ -56,7 +56,7 @@
     
     <!--   Book Copy views   -->
     <record id="copy_view_list" model="ir.ui.view">
-        <field name="name">book.form</field>
+        <field name="name">copy.tree</field>
         <field name="model">library.copy</field>
         <field name="inherit_id" ref="library.book_view_list"/>
         <field name="arch" type="xml">
@@ -72,6 +72,7 @@
     <record id="copy_view_form" model="ir.ui.view">
         <field name="name">copy.form</field>
         <field name="model">library.copy</field>
+        <field name="mode">primary</field>
         <field name="inherit_id" ref="library.book_view_form"/>
         <field name="arch" type="xml">
             <field name="name" position="replace">
