@@ -60,9 +60,9 @@
         <field name="model">library.copy</field>
         <field name="inherit_id" ref="library.book_view_list"/>
         <field name="arch" type="xml">
-            <field name="name" position="replace">
+            <xpath expr="//field[@name='name']" position="replace">
                 <field name="book_id"/>
-            </field>
+            </xpath>
             <field name="publisher_id" position="after">
                 <field name="reference"/>
             </field>
@@ -74,6 +74,9 @@
         <field name="model">library.copy</field>
         <field name="inherit_id" ref="library.book_view_form"/>
         <field name="arch" type="xml">
+            <field name="name" position="replace">
+                <field name="book_id"/>
+            </field>
             <page name="copies" position="replace">
                 <page string="Rentals" name="rentals">
                     <field name="rental_ids"/>
