@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-, api
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class Partner(models.Model):
