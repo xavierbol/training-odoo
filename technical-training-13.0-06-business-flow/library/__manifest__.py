@@ -30,9 +30,10 @@
         "views/partner_views.xml",
         "views/rental_views.xml",
         "views/menu_views.xml",
-        "data/library_data.xml",
     ],
     # only loaded in demonstration mode
-    'demo':        [],
+    'demo':        [
+        "data/library_data.xml",
+    ],
     'license': 'AGPL-3',
 }
