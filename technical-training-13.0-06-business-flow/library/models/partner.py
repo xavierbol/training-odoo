@@ -19,12 +19,10 @@ class Partner(models.Model):
     payment_ids = fields.One2many('library.payment', 'customer_id', string="Payments")
     amount_owed = fields.Float(compute="_amount_owed", store=True)
     
-    @api.multi
     def _get_lost_books_qty(self):
         for record in self:
             record.qty_lost_book = len(record.lost_rental_ids)
             
-    @api.multi
     @api.depends('payment_ids.amount')
     def _amount_owed(self):
         for record in self:
