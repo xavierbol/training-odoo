@@ -5,12 +5,13 @@ class Wizard(models.TransientModel):
     _name = "openacademy.wizard"
     _description = "Wizard: Quick registration of Attendees to Sessions"
     
-    session_id = fields.Many2one('openacademy.session', string="Session", required=True, default="_default_session")
-    attendee_ids = fields.Many2many('res.partner', string="Attendees")
+    session_id = fields.Many2one('openacademy.session', string="Session", required=True)
     
-    def _default_session(self):
-        return self.env['openacademy.session'].browse(self._context.get('active_id'))
+    def _default_attendees(self):
+        return self.env['res.partner'].browse(self._context.get('active_ids'))
+    
+    attendee_ids = fields.Many2many('res.partner', string="Attendees", default=_default_attendees)
     
     def subscribe(self):
-        self.session_id.atendee_ids |= self.attendee_ids
+        self.session_id.attendee_ids |= self.attendee_ids
         return {}
