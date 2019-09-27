@@ -35,12 +35,29 @@
         </field>
     </record>
 
+    <record id="copy_view_tree" model="ir.ui.view">
+        <field name="name">library.copy.tree</field>
+        <field name="model">library.copy</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="book_id"/>
+                <field name="reference"/>
+                <field name="book_state"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="copy_view_form" model="ir.ui.view">
         <field name="name">library.copy.form</field>
         <field name="model">library.copy</field>
         <field name="mode">primary</field>
         <field name="inherit_id" ref="library.book_view_form"/>
         <field name="arch" type="xml">
+            <sheet position="before">
+                <header>
+                    <field name="book_state" widget="statusbar"/>
+                </header>
+            </sheet>
             <field name="name" position="replace">
                 <field name="book_id"/>
             </field>
@@ -71,6 +88,7 @@
         <field name="name">Books</field>
         <field name="res_model">product.product</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_book', '=', True)]</field>
     </record>
 
     <record id="copy_action" model="ir.actions.act_window">

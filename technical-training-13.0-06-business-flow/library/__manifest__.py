@@ -29,11 +29,12 @@
         "views/book_views.xml",
         "views/partner_views.xml",
         "views/rental_views.xml",
+        "views/price_views.xml",
+        "views/payment_views.xml",
         "views/menu_views.xml",
-    ],
-    # only loaded in demonstration mode
-    'demo':        [
         "data/library_data.xml",
     ],
+    # only loaded in demonstration mode
+    'demo': [],
     'license': 'AGPL-3',
 }

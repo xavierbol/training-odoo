@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_view_tree" model="ir.ui.view">
+        <field name="name">payment.tree</field>
+        <field name="model">library.payment</field>
+        <field name="arch" type="xml">
+            <tree string="Payment tree">
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="customer_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="payment_action" model="ir.actions.act_window">
+        <field name="name">payment.tree</field>
+        <field name="res_model">library.payment</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>

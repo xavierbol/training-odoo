@@ -71,6 +71,22 @@
             name="Publishers"
             parent="library.settings_menu"
             sequence="10"
-            action="library.partner_action"
+            action="library.publisher_action"
+    />
+
+    <menuitem
+        id="price_menu_action"
+        name="Prices"
+        parent="library.book_menu"
+        sequence="20"
+        action="library.price_action"
+    />
+
+    <menuitem 
+        id="payment_menu_action"
+        name="Payments"
+        parent="library.settings_menu"
+        sequence="20"
+        action="library.payment_action"
     />
 </odoo>
