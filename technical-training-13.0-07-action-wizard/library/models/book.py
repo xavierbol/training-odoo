@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class Books(models.Model):
@@ -12,6 +12,25 @@ class Books(models.Model):
 
     copy_ids = fields.One2many('library.copy', 'book_id', string="Book Copies")
     is_book = fields.Boolean(string='Is a Book', default=False)
+    
+    rental_count = fields.Integer(compute="_compute_rental_count")
+    
+    @api.depends('copy_ids')
+    def _compute_rental_count(self):
+        for book in self:
+            book.rental_count = len(book.mapped('copy_ids.rental_ids'))
+    
+    def open_rentals(self):
+        self.ensure_one()
+        rental_ids = self.copy_ids.mapped('rental_ids')
+        return {
+            'name': 'Rentals of %s' % (self.name),
+            'type': 'ir.actions.act_window',
+            'res_model': 'library.rental',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'domain': [('id', 'in', rental_ids.ids)],
+        }
 
 
 class BookCopy(models.Model):

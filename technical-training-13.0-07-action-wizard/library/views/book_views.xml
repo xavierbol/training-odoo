@@ -31,6 +31,13 @@
                         <field name="publisher_id"/>
                         <field name="edition_date"/>
                         <field name="isbn"/>
+                        <button class="oe_stat_button" type="object"
+                                name="open_rentals">
+                            <div class="o_stat_info">
+                                <field name="rental_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Rentals</span>
+                            </div>
+                        </button>
                     </group>
                     <notebook>
                         <page string="Book Copies" name="copies">
