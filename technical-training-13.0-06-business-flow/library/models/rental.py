@@ -28,14 +28,12 @@ class Rentals(models.Model):
     def _compute_customer_address(self):
         self.customer_address = self.customer_id.contact_address
 
-    @api.multi
     def action_confirm(self):
         for record in self:
             record.state = 'rented'
             record.copy_id.book_state = 'rented'
             record.add_fee('time')
 
-    @api.multi
     def add_fee(self, type):
         for rec in self:
             if type == 'time':
@@ -55,13 +53,11 @@ class Rentals(models.Model):
                 'amount': - amount,
             })
 
-    @api.multi
     def action_return(self):
         for record in self:
             record.state = 'returned'
             record.copy_id.book_state = 'available'
 
-    @api.multi
     def action_lost(self):
         for record in self:
             record.state = 'lost'
