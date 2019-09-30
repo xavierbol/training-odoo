@@ -1,3 +1,5 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-army_manager,Army Manager,model_kingdom_army,,1,1,1,1
-economy_manager,Economy Manager,model_kingdom_city,,1,1,1,1
+army_manager,Army Manager,model_kingdom_army,kingdom.group_royals,1,1,1,1
+economy_manager,Economy Manager,model_kingdom_city,kingdom.group_royals,1,1,1,1
+army_advisor,Army Advisor,model_kingdom_army,kingdom.group_advisors,1,,,
+economy_advisor,Economy Advisor,model_kingdom_city,kingdom.group_advisors,1,,,
