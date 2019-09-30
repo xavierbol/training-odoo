@@ -14,14 +14,14 @@
     <record id="group_openacademy_maester" model="res.groups">
         <field name="name">Maester: his course only</field>
         <field name="category_id" ref="module_category_openacademy"/>
-        <field name="implied_ids" eval="[(4, ref('group_openacademy_student'))]"/>
+        <field name="implied_ids" eval="[(4, ref('openacademy.group_openacademy_student'))]"/>
         <field name="comment">The maeter will have access to his own course in the openacademy application</field>
     </record>
     
     <record id="group_openacademy_archmaester" model="res.groups">
         <field name="name">Archmaesters</field>
         <field name="category_id" ref="module_category_openacademy"/>
-        <field name="implied_ids" eval="[(4, ref('group_openacademy_maester'))]"/>
+        <field name="implied_ids" eval="[(4, ref('openacademy.group_openacademy_maester'))]"/>
         <field name="comment">The admin will have access to all data in the openacademy application</field>
     </record>
     

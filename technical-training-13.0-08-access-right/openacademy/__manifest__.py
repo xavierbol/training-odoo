@@ -24,8 +24,8 @@
 
     # always loaded
     'data':        [
-        "security/ir.model.access.csv",
         "security/openacademy.xml",
+        "security/ir.model.access.csv",
         "views/course_views.xml",
         "views/session_views.xml",
         "views/partner_views.xml",
