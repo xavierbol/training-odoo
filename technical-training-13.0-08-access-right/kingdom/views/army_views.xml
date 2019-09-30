@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="army_view_tree" model="ir.ui.view">
-        <field name="name">Army Tree</field>
+        <field name="name">army.tree</field>
         <field name="model">kingdom.army</field>
         <field name="arch" type="xml">
             <tree string="Army List">

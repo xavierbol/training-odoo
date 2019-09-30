@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="economy_view_tree" model="ir.ui.view">
+        <field name="name">economy.tree</field>
+        <field name="model">kingdom.city</field>
+        <field name="arch" type="xml">
+            <tree string="Economy Tree">
+                <field name="name"/>
+                <field name="citizen_count"/>
+                <field name="production_food"/>
+            </tree>
+        </field>
+    </record>
+    
     <record id="economy_action" model="ir.actions.act_window">
         <field name="name">Cities</field>
         <field name="res_model">kingdom.city</field>
