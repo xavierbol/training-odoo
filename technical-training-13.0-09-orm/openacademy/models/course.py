@@ -168,7 +168,12 @@ class Session(models.Model):
         invoice = self.env['openacademy.invoicing'].search([['instructor_id', '=', self.instructor_id.id]])
             
         if invoice:
-            invoice.session_ids.append(self.id)
+            ids = invoice.session_ids.ids
+            ids.append(self.id)
+            
+            invoice.write({
+                'session_ids': ids
+            })
         else:
             self.env['openacademy.invoicing'].create({
                 'instructor_id': self.instructor_id.id,

@@ -55,7 +55,7 @@
                             <field name="instructor_id"
                                    domain="['&amp;', ('instructor', '=', True), ('level', '&gt;=', level)]"/>
                             <field name="active"/>
-                            <field name="is_paid"/>
+                            <field name="is_paid" invisible='1'/>
                         </group>
                         <group>
                             <field name="start_date"/>
