@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="wizard_view_form" model="ir.ui.view">
+        <field name="name">Wizard Form</field>
+        <field name="model">select_book.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="customer_id"/>
+                    <field name="return_date"/>
+                </group>
+                <notebook>
+                    <page>
+                        <field name="copy_ids"/>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="next_step" type="object"
+                            string="Next" class="or_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <act_window id="launch_select_book_wizard"
+                name="Select books to rent"
+                binding_model="library.copy"
+                res_model="select_book.wizard"
+                view_mode="form"
+                target="new"/>
+</odoo>

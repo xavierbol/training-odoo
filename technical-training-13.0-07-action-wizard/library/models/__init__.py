@@ -3,4 +3,4 @@ from . import book
 from . import partner
 from . import price
 from . import rental
-
+from . import wizard
