@@ -21,12 +21,12 @@ class SelectBooksToRent(models.TransientModel):
                 'customer_id': self.customer_id.id,
                 'return_date': self.return_date
             })
-            return {
-                'name': 'Rentals of %s' % (self.customer_id.name),
-                'type': 'ir.actions.act_window',
-                'res_model': 'library.rental',
-                'view_mode': 'tree,form',
-                'view_type': 'form',
-                'domain': [('customer_id', '=', self.customer_id.id)],
-                'target': 'self'
-            }
+        return {
+            'name': 'Rentals of %s' % (self.customer_id.name),
+            'type': 'ir.actions.act_window',
+            'res_model': 'library.rental',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'domain': [('state', '=', 'draft'), ('customer_id', '=', self.customer_id.id)],
+            'target': 'self'
+        }
