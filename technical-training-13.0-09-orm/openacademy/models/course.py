@@ -164,7 +164,7 @@ class Session(models.Model):
             rec.message_post(body="Session %s of the course %s done" % (rec.name, rec.course_id.name))
             
     def action_create_invoice(self):
-        self.id_paid = True
+        self.is_paid = True
         invoice = self.env['openacademy.invoicing'].search([['instructor_id', '=', self.instructor_id.id]])
             
         if invoice:
