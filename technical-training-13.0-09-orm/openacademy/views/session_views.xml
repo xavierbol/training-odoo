@@ -36,7 +36,7 @@
                             string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
                             class="oe_highlight"/>
                     <button name="action_create_invoice" type="object"
-                            string="Create invoice" attrs="{'invisible' : ['&amp;', ('state', 'in', ('draft', 'confirmed')), ('is_paid', '=', True)] }"
+                            string="Create invoice" attrs="{'invisible' : ['|', ('state', 'in', ('draft', 'confirmed')), ('is_paid', '=', True)] }"
                             class="oe_highlight"/>
                     <field name="state" widget="statusbar" groups="openacademy.group_maesters"/>
                 </header>
