@@ -50,4 +50,12 @@
             sequence="20"
             action="partner_category_action"
     />
+    
+    <menuitem
+            id="invoicing_menu_action"
+            name="Invoicing"
+            parent="openacademy.root_menu"
+            sequence="10"
+            action="invoicing_action"
+    />
 </odoo>

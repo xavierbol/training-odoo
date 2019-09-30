@@ -35,6 +35,9 @@
                     <button name="action_done" type="object"
                             string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }"
                             class="oe_highlight"/>
+                    <button name="action_create_invoice" type="object"
+                            string="Create invoice" attrs="{'invisible' : ['&amp;', ('state', 'in', ('draft', 'confirmed')), ('is_paid', '=', True)] }"
+                            class="oe_highlight"/>
                     <field name="state" widget="statusbar" groups="openacademy.group_maesters"/>
                 </header>
                 <sheet>
@@ -52,6 +55,7 @@
                             <field name="instructor_id"
                                    domain="['&amp;', ('instructor', '=', True), ('level', '&gt;=', level)]"/>
                             <field name="active"/>
+                            <field name="is_paid"/>
                         </group>
                         <group>
                             <field name="start_date"/>

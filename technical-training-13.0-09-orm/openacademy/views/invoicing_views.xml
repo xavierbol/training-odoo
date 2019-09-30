@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="invoicing_view_tree" model="ir.ui.view">
+        <field name="name">invoicing.tree</field>
+        <field name="model">openacademy.invoicing</field>
+        <field name="arch" type="xml">
+            <tree string="Invoicing Tree">
+                <field name="id"/>
+                <field name="instructor_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="invoicing_view_form" model="ir.ui.view">
+        <field name="name">invoicing.form</field>
+        <field name="model">openacademy.invoicing</field>
+        <field name="arch" type="xml">
+            <form string="Invoicing Form">
+                <sheet>
+                    <group>
+                        <field name="instructor_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Sessions">
+                            <field name="session_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="invoicing_action" model="ir.actions.act_window">
+        <field name="name">Invoicing</field>
+        <field name="res_model">openacademy.invoicing</field>
+    </record>
+</odoo>

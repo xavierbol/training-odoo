@@ -92,6 +92,8 @@ class Session(models.Model):
     seats = fields.Integer()
     taken_seats = fields.Float(compute='_compute_taken_seats', store=True)
     percentage_per_day = fields.Integer("%", default=100)
+    
+    is_paid = fields.Boolean(default=False)
 
     def _warning(self, title, message):
         return {'warning': {
@@ -160,6 +162,19 @@ class Session(models.Model):
         for rec in self:
             rec.state = 'done'
             rec.message_post(body="Session %s of the course %s done" % (rec.name, rec.course_id.name))
+            
+    def action_create_invoice(self):
+        self.id_paid = True
+        invoice = self.env['openacademy.invoicing'].search([['instructor_id', '=', self.instructor_id.id]])
+            
+        if invoice:
+            invoice.session_ids.append(self.id)
+        else:
+            self.env['openacademy.invoicing'].create({
+                'instructor_id': self.instructor_id.id,
+                'session_ids': [self.id]
+            })
+        self.message_post(body="Session %s of the course %s is paid" % (self.name, self.course_id.name))
 
     def _auto_transition(self):
         for rec in self:
