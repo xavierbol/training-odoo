@@ -48,7 +48,7 @@ class Course(models.Model):
     @api.depends('session_ids')
     def _compute_attendee_count(self):
         for course in self:
-            course.attendee_count = len(course.mapped('session_ids.attendees_count'))
+            course.attendee_count = len(course.mapped('session_ids.attendee_ids'))
             
     def open_attendees(self):
         self.ensure_one()
