@@ -2,9 +2,10 @@
 <odoo>
     <report id="action_library_book_report"
             string="Library Books"
-            model="library.book"
+            model="product.product"
             report_type="qweb-html"
             name="library.report_library_book_template"
+            file="library.report_library_book"
     />
     
     <template id="report_library_book_template">
