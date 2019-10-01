@@ -9,12 +9,14 @@ class Library(Controller):
             'books': CopyBooks.search([['book_state', '=', 'available']])
         })
     
-    @route('/library/<name>/books/<model("library.copy"):book/', auth="public", website=True)
+    @route('/library/<name>/books/<model("library.copy"):book>/', auth="public", website=True)
     def book(self, name, book):
         return request.render('library.book', {
             'book': book
         })
         
-    @route('/library/<name>/rent/<model("library.copy"):book/rent', auth="public", website=True)
+    @route('/library/<name>/rent/<model("library.copy"):book>/rent', auth="public", website=True)
     def rent_book(self, name, book):
-        ...
+        return request.render('library.rent_book', {
+            
+        })
