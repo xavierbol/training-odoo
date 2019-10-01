@@ -4,8 +4,7 @@
             string="Library Books"
             model="library.book"
             report_type="qweb-html"
-            file="library.library_book_report"
-            name="library.library_book_report_template"
+            name="library.report_library_book_template"
     />
     
     <template id="report_library_book_template">
