@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="book_list">
+         <t t-call="website.layout">
+            <t t-set="title">Open Academy</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-foreach="books" t-as="book">
+                        <h2><t t-esc="book.book_id.isbn"/> <t t-esc="book.reference"/></h2>
+                        <p><t t-esc="book.readers_count"/></p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

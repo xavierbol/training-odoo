@@ -33,6 +33,7 @@
         "views/payment.xml",
         "views/price.xml",
         "views/rental.xml",
+        "templates.xml",
         "data/cron.xml",
         "data/mail.xml",
         "data/library_data.xml",
