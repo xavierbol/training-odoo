@@ -12,6 +12,12 @@ class Session(http.Controller):
         return http.request.render('openacademy.course_list', {
             'courses': Courses.search([])
         })
+    
+    @http.route('/openacademy/courses/<model("openacademy.course"):course>/', auth="public", website=True)
+    def course(self, course):
+        return http.request.render('openacademy.course', {
+            'course': course
+        })
 
     @http.route('/openacademy/sessions', auth="public", website=True)
     def session_list(self):

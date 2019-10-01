@@ -7,11 +7,27 @@
                 <div class="oe_structure">
                     <div class="container">
                         <t t-foreach="courses" t-as="course">
-                            <div class="row">
-                                <h2><t t-esc="course.id"/> <t t-esc="course.name"/></h2>
-                                <p><t t-esc="course.description"/></p>
+                            <div class="shadow p-3 mb-5 bg-white rounded">
+                                <a t-attf-href="/openacademy/courses/{{ slug(course) }}">
+                                    <h2><t t-esc="course.id"/> <t t-esc="course.name"/></h2>
+                                    <p><t t-esc="course.description"/></p>
+                                    <p>Level <t t-esc="course.level"/></p>
+                                </a>
                             </div>
                         </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+        
+        <template id="course">
+            <t t-call="website.layout">
+                <t t-set="title">Open Academy</t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2><t t-esc="course.name"/></h2>
+                        <p><t t-esc="course.description"/></p>
+                        <p><t t-esc="course.level"/></p>
                     </div>
                 </div>
             </t>
@@ -23,7 +39,11 @@
                 <div class="oe_structure">
                     <div class="container">
                         <t t-foreach="sessions" t-as="session">
-                            <p><t t-esc="session.id"/> <t t-esc="session.name"/></p>
+                            <p>
+                                <a t-attf-href="/openacademy/sessions/{{ slug(session) }}">
+                                    <t t-esc="session.id"/> <t t-esc="session.name"/>
+                                </a>
+                            </p>
                         </t>
                     </div>
                 </div>
@@ -35,8 +55,8 @@
                 <t t-set="title">Open Academy</t>
                 <div class="oe_structure">
                     <div class="container">
-                        <h2><t t-field="session.name"/></h2>
-                        <p><t t-field="session.description"/></p>
+                        <h2><t t-esc="session.name"/></h2>
+                        <p><t t-esc="session.description"/></p>
                     </div>
                 </div>
             </t>
