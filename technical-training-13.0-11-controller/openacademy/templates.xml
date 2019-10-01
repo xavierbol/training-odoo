@@ -1,7 +1,23 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <template id="index">
+        <template id="course_list">
+            <t t-call="website.layout">
+                <t t-set="title">Open Academy</t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <t t-foreach="courses" t-as="course">
+                            <div class="row">
+                                <h2><t t-esc="course.id"/> <t t-esc="course.name"/></h2>
+                                <p><t t-esc="course.description"/></p>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+        
+        <template id="session_list">
             <t t-call="website.layout">
                 <t t-set="title">Open Academy</t>
                 <div class="oe_structure">
@@ -9,6 +25,18 @@
                         <t t-foreach="sessions" t-as="session">
                             <p><t t-esc="session.id"/> <t t-esc="session.name"/></p>
                         </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+        
+        <template id="session">
+            <t t-call="website.layout">
+                <t t-set="title">Open Academy</t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2><t t-field="session.name"/></h2>
+                        <p><t t-field="session.description"/></p>
                     </div>
                 </div>
             </t>
