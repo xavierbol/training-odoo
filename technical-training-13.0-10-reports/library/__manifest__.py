@@ -26,7 +26,6 @@
     # always loaded
     'data':        [
         "security/ir.model.access.csv",
-        "report/library_book_report.xml",
         "views/menus.xml",
         "views/author.xml",
         "views/books.xml",
@@ -38,6 +37,7 @@
         "data/mail.xml",
         "data/library_data.xml",
         "data/prices.xml",
+        "report/library_book_report.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [],

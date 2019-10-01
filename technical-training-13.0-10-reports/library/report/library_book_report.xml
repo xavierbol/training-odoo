@@ -3,7 +3,7 @@
     <report id="action_library_book_report"
             string="Library Books"
             model="library.book"
-            report_type="qweb-pdf"
+            report_type="qweb-html"
             file="library.library_book_report"
             name="library.library_book_report_template"
     />
