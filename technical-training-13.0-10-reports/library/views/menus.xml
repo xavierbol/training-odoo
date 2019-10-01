@@ -7,5 +7,7 @@
         <menuitem name="Rental" id="menu_rental_top" parent="menu_root"/>
         <menuitem name="Customers" id="menu_customer_top" parent="menu_root"/>
         <menuitem name="Books" id="menu_book_top" parent="menu_root"/>
+        <menuitem name="Report" id="menu_report_top" parent="menu_root"/>
+        <menuitem name="Book Report" id="menu_book_report" parent="menu_report_top" action="action_library_book_report"/>
     </data>
 </odoo>
