@@ -30,6 +30,9 @@
                         <page string="Rentals">
                             <field name="rental_ids"/>
                         </page>
+                        <page string="Authors">
+                            <field name="author_ids"/>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
