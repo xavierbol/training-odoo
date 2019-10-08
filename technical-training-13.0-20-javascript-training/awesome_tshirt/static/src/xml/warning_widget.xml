@@ -1,0 +1,9 @@
+<templates id="template">
+    <div t-name="WarningWidget.NoImage" class="alert alert-danger">
+        No image
+    </div>
+    
+    <div t-name="WarningWidget.AddPromo" class="alert alert-success">
+        Add promotional material
+    </div>
+</templates>

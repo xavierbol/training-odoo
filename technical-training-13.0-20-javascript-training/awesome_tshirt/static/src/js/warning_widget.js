@@ -1,11 +1,12 @@
-odoo.define('awesome_tshirt.warning_widget', function (require) {
+odoo.define('awesome_tshirt.WarningWidget', function (require) {
     "use strict";
 
     const Widget = require('web.Widget');
     const widgetRegistry = require('web.widget_registry');
+    const core = require('web.core');
+    const qweb = core.qweb;
 
     const WarningWidget = Widget.extend({
-        // template: 'MyQWebTemplate',
         events: {
             
         },
@@ -13,8 +14,8 @@ odoo.define('awesome_tshirt.warning_widget', function (require) {
          * @override
          */
         init: function (parent) {
+            this.record = parent.state
             this._super.apply(this, arguments);
-            this.warning = parent.warning
         },
         /**
          * @override
@@ -26,27 +27,21 @@ odoo.define('awesome_tshirt.warning_widget', function (require) {
          * @override
          */
         start: function () {
-            return this._super.apply(this, arguments).then(() => {
-                this._renderWarning();
-            });
+            this._renderWarning();
+            return this._super.apply(this, arguments);
+        },
+        updateState: function (record) {
+            this.record = record;
+            this._renderWarning();
         },
         _renderWarning: function () {
-            if (this.warning && this.warning.length > 0) {
-                const elem = document.createElement('div')
-                elem.className = "alert alert-warning";
-                elem.setAttribute('role', "alert");
-    
-                if (this.warning instanceof Array) {
-                    this.warning.forEach(warning => {
-                        const p = document.createElement('p');
-                        p.appendChild(document.createTextNode(warning));
-                        elem.appendChild(p);
-                    })
-                } else {
-                    elem.appendChild(document.createTextNode(warning));
-                }
-    
-                this.$el.html(elem);
+            this.$el.empty();
+            if (!this.record.data.image_url) {
+                this.$el.append(qweb.render('WarningWidget.NoImage'));
+            }
+
+            if (this.record.data.amount > 50) {
+                this.$el.append(qweb.render('WarningWidget.AddPromo'));
             }
         }
     });
