@@ -5,7 +5,7 @@
 
     <t t-name="OrderFormView.Buttons">
         <button class="btn btn-primary o_print_label">
-            Print
+            Print Label
         </button>
     </t>
 </templates>
