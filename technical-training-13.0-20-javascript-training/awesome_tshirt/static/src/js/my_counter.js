@@ -1,8 +1,6 @@
 odoo.define('awesome_tshirt.MyCounter', function(require) {
     "use strict"
 
-    console.log("create MyCounter widget");
-
     const Widget = require('web.Widget');
     
     const Counter = Widget.extend({

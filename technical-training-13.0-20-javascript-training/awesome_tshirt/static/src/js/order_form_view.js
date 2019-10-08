@@ -23,8 +23,6 @@ odoo.define('awesome_tshirt.OrderForm', function (require) {
             this._super.apply(this, arguments);
             if (this.$buttons) {
                 const state = this.model.get(this.handle, { raw: true });
-                console.log(state);
-                console.log(`mode ${this.mode}`)
                 const disabled = this.mode === 'edit' && !state.res_id;
                 const primary = state.data.customer_id && state.data.state === 'printed';
                 this.$buttons.find('.o_print_label')

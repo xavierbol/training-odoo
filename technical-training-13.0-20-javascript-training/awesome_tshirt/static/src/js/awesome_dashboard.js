@@ -87,14 +87,12 @@ odoo.define('awesome_tshirt.dashboard', function(require) {
             });
         },
         _onOpenOrders: function (ev) {
-            console.log(ev);
         },
         _loadStatistics: function () {
             return this._rpc({
                 route: '/awesome_tshirt/statistics',
                 params: {},
             }).then((stats) => {
-                console.log(stats)
                 this.stats = stats
             })
         },
