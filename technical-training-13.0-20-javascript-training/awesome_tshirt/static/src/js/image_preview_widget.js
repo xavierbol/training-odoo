@@ -8,12 +8,23 @@ odoo.define('awesome_tshirt.image_preview', function (require) {
     const _t = core._t;
 
     const ImagePreview = FieldChar.extend({
+        isSet: function () {
+            return true;
+        },
         _renderReadonly: function () {
-            let img = document.createElement('img');
-            img.src = this.value;
-            img.alt = _t("Image Preview");
-            img.className = "o_image_preview"
-            this.$el.html(img)
+            let elem;
+
+            if (this.value) {
+                elem = document.createElement('img');
+                elem.src = this.value;
+                elem.alt = _t("Image Preview");
+                elem.className = "o_image_preview"
+                this.$el.html(elem)
+            } else {
+                this.$el.text(_t("MISSING TSHIRT DESIGN"))
+                        .addClass('text-danger')
+            }
+            
         }
     });
 
