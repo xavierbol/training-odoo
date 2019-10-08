@@ -1,0 +1,11 @@
+<templates id="template">
+    <t t-name="CustomerFormView.Buttons">
+        <button name="geo_localize" class="btn btn-primary o_geo_localize">Geolocate</button>
+    </t>
+
+    <t t-name="OrderFormView.Buttons">
+        <button class="btn btn-primary o_print_label">
+            Print
+        </button>
+    </t>
+</templates>
