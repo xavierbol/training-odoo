@@ -8,14 +8,10 @@ odoo.define('awesome_tshirt.image_preview', function (require) {
     const _t = core._t;
 
     const ImagePreview = FieldChar.extend({
-        isSet: function () {
-            return true;
-        },
+        isSet: () => true,
         _renderReadonly: function () {
-            let elem;
-
             if (this.value) {
-                elem = document.createElement('img');
+                const elem = document.createElement('img');
                 elem.src = this.value;
                 elem.alt = _t("Image Preview");
                 elem.className = "o_image_preview"
