@@ -1,52 +1,31 @@
-odoo.define('awesome_tshirt.MyCounter', function (require) {
-"use strict";
+odoo.define('awesome_tshirt.MyCounter', function(require) {
+    "use strict"
 
-/**
- * This file defines the MyCounter widget, displaying a counter with two buttons
- * allowing to increment and decrement it.
- */
+    console.log("create MyCounter widget");
 
-const Widget = require('web.Widget');
+    const Widget = require('web.Widget');
+    
+    const Counter = Widget.extend({
+        template: 'MyCounter',
+        xmlDependencies: ['/awesome_tshirt/static/src/xml/my_counter.xml'],
+        events: {
+            'click .o_decrement': '_onDecrement',
+            'click .o_increment': '_onIncrement',
+        },
+        init: function (parent) {
+            this._super(parent)
+            this.count = 0;
+        },
+        _onDecrement: function () {
+            this.count--;
+            // this.$('.val').text(this.count);
+            this.renderElement();
+        },
+        _onIncrement: function () {
+            this.count++;
+            this.renderElement();
+        },
+    });
 
-const MyCounter = Widget.extend({
-    template: 'MyCounter',
-    events: {
-        'click .o_decrement': '_onDecrement',
-        'click .o_increment': '_onIncrement',
-    },
-
-    /**
-     * @override
-     */
-    init: function () {
-        this.value = 0;
-        this._super.apply(this, arguments);
-    },
-
-    //--------------------------------------------------------------------------
-    // Handlers
-    //--------------------------------------------------------------------------
-
-    /**
-     * Decrement the counter and re-render the widget.
-     *
-     * @private
-     */
-    _onDecrement: function () {
-        this.value--;
-        this.renderElement();
-    },
-    /**
-     * Increment the counter and re-render the widget.
-     *
-     * @private
-     */
-    _onIncrement: function () {
-        this.value++;
-        this.renderElement();
-    },
-});
-
-return MyCounter;
-
+    return Counter;
 });
