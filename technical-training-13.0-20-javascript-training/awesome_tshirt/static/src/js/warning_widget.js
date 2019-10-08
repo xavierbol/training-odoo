@@ -30,6 +30,10 @@ odoo.define('awesome_tshirt.WarningWidget', function (require) {
             this._renderWarning();
             return this._super.apply(this, arguments);
         },
+        /**
+         * When a field in the record is updated, this method is launched.
+         * @param {Object} record 
+         */
         updateState: function (record) {
             this.record = record;
             this._renderWarning();
