@@ -1,0 +1,20 @@
+<templates id="template">
+    <div t-name="awesome_tshirt.KanbanView" class="o_customer_sidebar">
+        <div class="input_group">
+            <input type="text" class="form-control o_customer_search"/>
+        </div>
+        <table class="table table-bordered o_customer_list">
+            <t t-call="awesome_tshirt.KanbanView.Customers"/>
+        </table>
+    </div>
+
+    <tbody t-name="awesome_tshirt.KanbanView.Customers">
+        <t t-foreach="customers" t-as="customer">
+            <tr t-att-data-id="customer.id" t-attf-class="o_customer #{customer.id === activeCustomerID ? 'o_active' : ''}">
+                <td>
+                    <t t-esc="customer.display_name"/>
+                </td>
+            </tr>
+        </t>
+    </tbody>
+</templates>

@@ -12,7 +12,7 @@ odoo.define('awesome_tshirt.HomeMenu', function (require) {
             elem.appendChild(document.createTextNode(session.home_menu_message));
             this.$el.prepend(elem);
         }
-    })
+    });
 
     return HomeMenu;
 });
