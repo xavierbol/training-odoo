@@ -8,8 +8,8 @@ const utils = require('web.utils');
 
 const MapRenderer = AbstractRenderer.extend({
     _render: function () {
-        console.log(this)
-        this.$el.text('Hello World');
+        console.log('renderer')
+        this.$el.text(JSON.stringify(this.state));
         this._super.apply(this, arguments);
     }
 });

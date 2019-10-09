@@ -22,6 +22,11 @@ const MapView = AbstractView.extend({
     display_name: _lt('Map'),
     icon: 'fa-globe',
     viewType: 'awesome_map',
+    init: function () {
+        this._super.apply(this, arguments);
+        this.loadParams.latitudeField = this.arch.attrs.latitude;
+        this.loadParams.longitudeField = this.arch.attrs.longitude;
+    }
 });
 
 viewRegistry.add('awesome_map', MapView);
