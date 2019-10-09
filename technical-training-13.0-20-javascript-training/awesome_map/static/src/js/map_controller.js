@@ -6,7 +6,13 @@ const core = require('web.core');
 
 const qweb = core.qweb;
 
-const MapController = AbstractController.extend({});
+const MapController = AbstractController.extend({
+    init: function (parent, model, renderer, params) {
+        this._super.apply(this, arguments);
+        console.log(this)
+        console.log(params)
+    }
+});
 
 return MapController;
 
