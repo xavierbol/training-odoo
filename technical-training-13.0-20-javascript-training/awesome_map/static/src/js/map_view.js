@@ -17,33 +17,11 @@ const MapView = AbstractView.extend({
         Model: MapModel,
         Renderer: MapRenderer,
     }),
-    cssLibs: ['/awesome_map/static/lib/leaflet/leaflet.css'],
-    jsLibs: ['/awesome_map/static/lib/leaflet/leaflet.js'],
+    // cssLibs: ['/awesome_map/static/lib/leaflet/leaflet.css'],
+    // jsLibs: ['/awesome_map/static/lib/leaflet/leaflet.js'],
     display_name: _lt('Map'),
     icon: 'fa-globe',
     viewType: 'awesome_map',
-
-    /**
-     * @override
-     */
-    init: function () {
-        this._super.apply(this, arguments);
-        this.rendererParams.latitudeField = this.arch.attrs.latitude;
-        this.rendererParams.longitudeField = this.arch.attrs.longitude;
-
-        const fieldNames = [this.rendererParams.latitudeField, this.rendererParams.longitudeField];
-        let template;
-        this.arch.children.forEach(node => {
-            if (node.tag === 'field') {
-                fieldNames.push(node.attrs.name);
-            }
-            if (node.tag === 'template') {
-                template = node;
-            }
-        });
-        this.loadParams.fieldNames = _.uniq(fieldNames);
-        this.rendererParams.template = template;
-    },
 });
 
 viewRegistry.add('awesome_map', MapView);
