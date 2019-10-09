@@ -26,6 +26,20 @@ const MapView = AbstractView.extend({
         this._super.apply(this, arguments);
         this.loadParams.latitudeField = this.arch.attrs.latitude;
         this.loadParams.longitudeField = this.arch.attrs.longitude;
+
+        const fieldNames = [this.loadParams.latitudeField, this.loadParams.longitudeField]
+        let template;
+
+        this.arch.children.forEach(node => {
+            if (node.tag === 'field') {
+                fieldNames.push(node.attrs.name);
+            } else if (node.tag === 'template') {
+                template = node;
+            }
+
+            this.loadParams.fieldNames = _.uniq(fieldNames);
+            this.rendererParams.template = template;
+        })
     }
 });
 

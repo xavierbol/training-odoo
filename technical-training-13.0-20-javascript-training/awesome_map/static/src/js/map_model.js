@@ -16,17 +16,16 @@ const MapModel = AbstractModel.extend({
      * @param {Object} params
      */
     load: function (params) {
-        const fields = [params.latitudeField, params.longitudeField]
-
         return this._rpc({
             model: params.modelName,
             method: 'search_read',
-            fields: fields,
+            fields: params.fieldNames,
             domain: params.domain
         }).then((results) => {
-            this.data = results.map(({ id, partner_latitude, partner_longitude }) => {
+            this.data = results.map(({ id, name, partner_latitude, partner_longitude }) => {
                 return {
                     id,
+                    name,
                     latitude: partner_latitude,
                     longitude: partner_longitude
                 };

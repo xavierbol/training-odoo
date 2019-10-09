@@ -8,14 +8,23 @@ const utils = require('web.utils');
 
 const MapRenderer = AbstractRenderer.extend({
     className: "o_map_view",
-    
-    init: function () {
+
+    init: function (parent, state, params) {
         this._super.apply(this, arguments);
         this.initMap = false;
+        this.isInDOM = false;
+        this.markers = [];
+        this.qweb = new QWeb(session.debug, {_s: session.origin}, false);
+        this.qweb.add_template(utils.json_node_to_xml(params.template));
     },
     on_attach_callback: function () {
+        this.isInDOM = true;
         this._initializeMap();
+        this._renderDataPoints();
         this._super.apply(this, arguments);
+    },
+    on_detach_callback: function () {
+        this.isInDOM = false;
     },
     _initializeMap: function () {
         if (this.initMap) {
@@ -23,14 +32,30 @@ const MapRenderer = AbstractRenderer.extend({
         }
 
         this.initMap = true;
-        const options = {
-            zoom: false
-        };
-        const mymap = L.map(this.el, options).setView([51.505, -0.09], 13);
+
+        const defaultLatitude = this.state[0].latitude || 51.505;
+        const defaultLongitude = this.state[0].longitude || -0.09;
+
+        this.leafletMap = L.map(this.el).setView([defaultLatitude, defaultLongitude], 13);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
+        }).addTo(this.leafletMap);
+    },
+    _render: function () {
+        if (this.isInDOM) {
+            this._renderDataPoints();
+        }
+        return this._super.apply(this, arguments);
+    },
+    _renderDataPoints: function () {
+        _.invoke(this.markers, 'remove');
+        this.state.forEach((point) => {
+            const maker = L.marker([point.latitude, point.longitude]).addTo(this.leafletMap)
+                .bindPopup(this.qweb.render('map-popup', {record: point}))
+                .openPopup();
+            this.markers.push(maker);
+        });
     }
 });
 
