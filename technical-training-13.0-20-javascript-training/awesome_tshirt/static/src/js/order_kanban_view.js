@@ -10,7 +10,7 @@ odoo.define('awesome_tshirt.OrderKanbanView', function (require) {
     const OrderKanbanController = KanbanController.extend({
         events: {
             'click .o_customer': '_onClickCustomer',
-            'keydown .o_customer_search': '_onInputKeydown',
+            'input .o_customer_search': '_onCustomerSearchInput',
         },
         init: function () {
             this._super.apply(this, arguments);
@@ -64,16 +64,26 @@ odoo.define('awesome_tshirt.OrderKanbanView', function (require) {
             this.activeCustomerID = this.$el.find(event.currentTarget).data('id');
             this.reload();
         },
-        _onInputKeydown: async function (event) {
-            if (event.keyCode === 13) {
-                const domain = []
-                const search = this.$el.find(event.currentTarget).val();
-                if (search.trim().length > 0) {
-                    domain.push(['display_name', '=like', search]);
-                }
-                await this._loadCustomers(domain)
-                this._renderCustomerList();
-            }
+        /**
+         * Updates the customer list according to the currnet search and active id
+         *
+         * @private
+         */
+        _updateCustomerList: function () {
+            var searchVal = this.$('.o_customer_search').val();
+            var matches = fuzzy.filter(searchVal, _.pluck(this.customers, 'display_name'));
+            var indexes = _.pluck(matches, 'index');
+            var customers = _.map(indexes, (index) => this.customers[index]);
+            this.$('.o_customer_list').html(qweb.render('awesome_tshirt.KanbanView.Customers', {
+                activeCustomerID: this.activeCustomerID,
+                customers,
+            }));
+        },
+         /**
+         * @private
+         */
+        _onCustomerSearchInput: function () {
+            this._updateCustomerList();
         },
         _render: function () {
             this.$el.addClass('o_order_kanban_view');

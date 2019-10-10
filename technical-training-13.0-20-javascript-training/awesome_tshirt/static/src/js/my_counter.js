@@ -5,14 +5,13 @@ odoo.define('awesome_tshirt.MyCounter', function(require) {
     
     const Counter = Widget.extend({
         template: 'MyCounter',
-        xmlDependencies: ['/awesome_tshirt/static/src/xml/my_counter.xml'],
         events: {
             'click .o_decrement': '_onDecrement',
             'click .o_increment': '_onIncrement',
         },
-        init: function (parent) {
-            this._super(parent)
+        init: function () {
             this.count = 0;
+            this._super.apply(this, arguments);
         },
         _onDecrement: function () {
             this.count--;
