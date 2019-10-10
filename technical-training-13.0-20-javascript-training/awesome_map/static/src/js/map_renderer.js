@@ -26,6 +26,12 @@ const MapRenderer = AbstractRenderer.extend({
     on_detach_callback: function () {
         this.isInDOM = false;
     },
+    zoomIn: function () {
+        this.leafletMap.zoomIn();
+    },
+    zoomOut: function () {
+        this.leafletMap.zoomOut();
+    },
     _initializeMap: function () {
         if (this.initMap) {
             return;

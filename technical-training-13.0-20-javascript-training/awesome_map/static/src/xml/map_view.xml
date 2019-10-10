@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-
+    <div t-name="MapView.Buttons" class="o_map_buttons">
+        <button class="btn btn-primary o_zoom_in">Zoom in</button>
+        <button class="btn btn-primary o_zoom_out">Zoom out</button>
+    </div>
 </templates>
