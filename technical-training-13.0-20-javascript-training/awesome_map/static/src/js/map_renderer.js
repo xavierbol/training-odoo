@@ -54,6 +54,10 @@ const MapRenderer = AbstractRenderer.extend({
             const maker = L.marker([point.latitude, point.longitude]).addTo(this.leafletMap)
                 .bindPopup(this.qweb.render('map-popup', {record: point}))
                 .openPopup();
+            maker.on('click', () => {
+                console.log('click')
+                this.trigger_up('record_clicked', { id: point.id });
+            })
             this.markers.push(maker);
         });
     }

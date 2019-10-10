@@ -7,10 +7,16 @@ const core = require('web.core');
 const qweb = core.qweb;
 
 const MapController = AbstractController.extend({
-    init: function (parent, model, renderer, params) {
-        this._super.apply(this, arguments);
-        console.log(this)
-        console.log(params)
+    custom_events: _.extend({}, AbstractController.prototype.custom_events, {
+        'record_clicked': '_onRecordClicked',
+    }),
+    _onRecordClicked: function (event) {
+        this.trigger_up('switch_view', {
+            view_type: 'form',
+            res_id: event.data.id,
+            mode: 'readonly',
+            model: this.modelName,
+        });
     }
 });
 
