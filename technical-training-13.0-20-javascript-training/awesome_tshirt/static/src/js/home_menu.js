@@ -7,6 +7,7 @@ odoo.define('awesome_tshirt.HomeMenu', function (require) {
     HomeMenu.include({
         _render: function () {
             this._super();
+            this.$el.find('div.alert.alert-warning').remove();
             const elem = document.createElement('div');
             elem.className = "alert alert-warning";
             elem.appendChild(document.createTextNode(session.home_menu_message));

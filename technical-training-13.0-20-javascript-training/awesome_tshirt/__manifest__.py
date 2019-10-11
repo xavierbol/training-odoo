@@ -11,7 +11,7 @@
     'category': 'Extra Tools',
     'version': '2.0',
     'application': True,
-    'depends': ['base', 'web', 'base_geolocalize'],
+    'depends': ['base', 'web', 'base_geolocalize', 'web_tour'],
     'data': [
         'assets.xml',
         'security/ir.model.access.csv',

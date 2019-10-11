@@ -68,9 +68,11 @@ class TShirtOrder(models.Model):
     @api.model
     def get_empty_list_help(self, help):
         title = 'There is no t-shirt order'
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        base_url = self.env['ir.config_parameter'].sudo(
+        ).get_param('web.base.url')
         url = '%s/awesome_tshirt/order' % base_url
-        content = 'People can make orders through the <a href=%(url)s>public page</a>.' % {'url': url}
+        content = 'People can make orders through the <a href=%(url)s>public page</a>.' % {
+            'url': url}
         return """
             <p class="o_view_nocontent_smiling_face">%s</p>
             <p class="oe_view_nocontent_alias">%s</p>
